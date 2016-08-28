@@ -1,0 +1,31 @@
+{
+    "name": "Delux-React",
+    "version": "v1.0.0",
+    "description": "React bindings for Delux",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:aniddan/delux-react.git"
+    },
+    "keywords": [
+        "state",
+        "manager",
+        "immutable",
+        "delux",
+        "react",
+        "redux",
+        "flux"
+    ],
+    "scripts": {
+        "test": "node test.js"
+    },
+    "author": "Iddan Aharonson <mail@iddan.co> (http://iddan.co)",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/aniddan/delux-react/issues"
+    },
+    "homepage": "https://github.com/aniddan/delux-react",
+    "dependencies": {
+        "es6-promise": "3.2.1"
+    }
+}
