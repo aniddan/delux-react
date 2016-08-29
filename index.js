@@ -1,7 +1,5 @@
-const React = require('react');
+const Store = require('delux');
 
-module.exports = function connect (reactElement, store, collectionNames) {
-    let clone = React.cloneElement(reactElement, {store});
-    store.observe(collectionNames, () => clone.forceUpdate());
-    return clone;
+Store.prototype.rerender = function (collectionNames, componentInstance) {
+    this.observe(collectionNames, () => componentInstance.forceUpdate());
 };

@@ -1,6 +1,6 @@
 {
-    "name": "Delux-React",
-    "version": "v1.0.0",
+    "name": "delux-react",
+    "version": "v1.1.0",
     "description": "React bindings for Delux",
     "main": "index.js",
     "repository": {
@@ -26,6 +26,10 @@
     },
     "homepage": "https://github.com/aniddan/delux-react",
     "dependencies": {
-        "es6-promise": "3.2.1"
+        "delux": "^1.1.0"
+    },
+    "devDependencies": {
+        "react": "",
+        "react-unit": ""
     }
 }
