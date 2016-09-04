@@ -1,7 +1,7 @@
 const Store = require('delux');
-require('.');
 const React = require('react');
 const createComponent = require('react-unit');
+const {connect} = require('.');
 
 let store = new Store;
 
@@ -12,15 +12,20 @@ store.images.on('addImage', (action, state) => state[action.payload.id] = action
 class App extends React.Component {
     constructor (props) {
         super(props);
-        store.rerender('images', this);
     }
     render () {
-        console.log(store.state.images['1']);
+        console.log(this.state.images['1']);
         return React.createElement('div', {
-            children: JSON.stringify(store.state.images['1'])
+            children: JSON.stringify(this.state.images['1'])
         });
     }
 }
+
+createComponent(
+    React.createElement(store.Provider, {
+        children: React.createElement(connect(App, 'images'))
+    })
+);
 
 store.dispatch({
     type: 'addImage',
@@ -29,5 +34,3 @@ store.dispatch({
         url: 'https://media.giphy.com/media/q5WCmw3RqDmxy/giphy.gif'
     }
 });
-
-createComponent(React.createElement(App));
