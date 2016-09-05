@@ -1,5 +1,14 @@
 const Store = require('delux');
+const React = require('react');
+const Provider = require('./provider');
+const ConnectedComponent = require('./connected');
 
-Store.prototype.rerender = function (collectionNames, componentInstance) {
-    this.observe(collectionNames, () => componentInstance.forceUpdate());
-};
+module.exports = {Provider, ConnectedComponent};
+
+Object.defineProperty(Store.prototype, 'Provider', {
+    get () {
+        return (props) => React.createElement(Provider, Object.assign({
+            store: this,
+        }, props));
+    }
+});
