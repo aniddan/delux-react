@@ -49,24 +49,62 @@ The Provider is a [React component][React Component] which pass your [store][Del
 
  - **store** - Delux store to provide to the child component
 
-#### connect
+#### ConnectedComponent
 
-Connects components to the store.
+Creates React Components connected to the store.
 
-##### Paramaters
-
-- **component** - The React Component to connect.
-- **collectionNames** - The collections to set to the component state and update by.
-
-##### Connect a component
+##### Create a connected component
 
 ```JavaScript
-let connectedComponent = connect(MyComponent, ['myCollection']);
+class MyComponent extends ConnectedComponent {
+    constructor (props) {
+        super(props, collectionNames);
+    }
+    //...
+}
+
+// or
+
+class MyComponent extends ConnectedComponent {
+    constructor (props) {
+        super(props, collectionNames);
+    }
+    //...
+    componentDidMount () {
+        this.connect();
+    }
+    //...
+}
 ```
 
-##### Description
+##### Parameters
 
-Connect is a function which extends a component to use a Delux store through it's context.
+- **collectionNames** - Store collections the component uses.
+
+##### ConnectedComponent Instance
+
+###### State
+
+The state of the component is unified with the state of the selected collections.
+
+###### Methods
+
+**dispatch()**
+
+Store#dispatch alias
+
+**connect()**
+
+If custom componentDidMount method provided connect() should be use as a super method for the component to connect it's state and methods.
+
+### Testing
+
+in /delux-react:
+
+```Bash
+ $ npm test
+```
+open /test/test.html with a modern browser.
 
 [React-Redux]: https://github.com/reactjs/react-redux
 [Subclassing]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Sub_classing_with_extends
