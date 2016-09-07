@@ -1,6 +1,6 @@
 {
     "name": "delux-react",
-    "version": "v1.1.0",
+    "version": "v1.3.1",
     "description": "React bindings for Delux",
     "main": "index.js",
     "repository": {
@@ -17,7 +17,7 @@
         "flux"
     ],
     "scripts": {
-        "test": "node test.js"
+        "test": "webpack --watch test/test.js test/b_test.js"
     },
     "author": "Iddan Aharonson <mail@iddan.co> (http://iddan.co)",
     "license": "MIT",
@@ -28,8 +28,43 @@
     "dependencies": {
         "delux": "^1.1.0"
     },
-    "devDependencies": {
-        "react": "",
-        "react-unit": ""
+    "eslintConfig": {
+        "extends": [
+            "eslint:recommended",
+            "plugin:react/recommended"
+        ],
+        "env": {
+            "es6": true,
+            "node": true,
+            "browser": true
+        },
+        "ecmaFeatures": {
+            "jsx": true,
+            "experimentalObjectRestSpread": true
+        },
+        "plugins": [
+            "react"
+        ],
+        "parserOptions": {
+            "sourceType": "module"
+        },
+        "rules": {
+            "indent": [
+                2,
+                4
+            ],
+            "quotes": [
+                2,
+                "single"
+            ],
+            "linebreak-style": [
+                2,
+                "unix"
+            ],
+            "semi": [
+                2,
+                "always"
+            ]
+        }
     }
 }

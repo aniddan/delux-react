@@ -1,5 +1,11 @@
 const Store = require('delux');
+const Provider = require('./src/provider');
+const ConnectedComponent = require('./src/connected');
 
-Store.prototype.rerender = function (collectionNames, componentInstance) {
-    this.observe(collectionNames, () => componentInstance.forceUpdate());
-};
+module.exports = {Provider, ConnectedComponent};
+
+Object.defineProperty(Store.prototype, 'Provider', {
+    get () {
+        return Provider.StoreConstructor(this);
+    }
+});
