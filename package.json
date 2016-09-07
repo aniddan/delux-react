@@ -1,6 +1,6 @@
 {
     "name": "delux-react",
-    "version": "v1.1.0",
+    "version": "v1.3.0",
     "description": "React bindings for Delux",
     "main": "index.js",
     "repository": {
