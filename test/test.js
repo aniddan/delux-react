@@ -1,6 +1,6 @@
 const Store = require('delux');
 const React = require('react');
-const createComponent = require('react-unit');
+const ReactDOM = require('react-dom');
 const {ConnectedComponent} = require('..');
 
 let store = new Store;
@@ -14,8 +14,8 @@ store.images.on('addImage', (action, state) => {
 let id = 0;
 
 class App extends ConnectedComponent {
-    constructor (props) {
-        super(props, 'images');
+    static get collections () {
+        return ['images'];
     }
     render () {
         return React.createElement('div', {
@@ -36,8 +36,9 @@ class App extends ConnectedComponent {
     }
 }
 
-createComponent(
+ReactDOM.render(
     React.createElement(store.Provider, {
         children: React.createElement(App)
-    })
+    }),
+    document.querySelector('div')
 );
