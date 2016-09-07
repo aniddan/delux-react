@@ -1,5 +1,4 @@
 const Store = require('delux');
-const React = require('react');
 const Provider = require('./src/provider');
 const ConnectedComponent = require('./src/connected');
 
