@@ -6,9 +6,6 @@ class ConnectedComponent extends React.Component {
     constructor (props, context) {
         super(...arguments);
         this.connect(context);
-        if (this.init) {
-            this.init(...arguments);
-        }
     }
     connect (context) {
         let {store} = context || this.context;
