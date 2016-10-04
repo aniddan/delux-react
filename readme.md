@@ -3,23 +3,26 @@
 Delux bindings for React
 
 ```JavaScript
-import Store from 'delux';
+import Store, {Collection} from 'delux';
 import React from 'react';
-import {connect} from 'delux-react';
+import {ConnectedComponent} from 'delux-react';
 
-class myComponent extends React.Component {
+class myComponent extends ConnectedComponent {
+  static get collections () {
+      return ['images'];
+  }
   render () {
-    return <div>{JSON.stringify(this.props.store)}</div>;
+    return <div>{JSON.stringify(this.state.images)}</div>;
   }
 }
 
 let store = new Store ();
 
-store.images = new Store.Collection();
+store.images = new Collection({});
 
-<store.Provider>
+<Provider store={store}>
   {connect(myComponent, ['images'])}
-</store.Provider>
+</Provider>
 ```
 
 ### Features
@@ -37,8 +40,6 @@ Provider wraps connected components to the store.
 
 ```JavaScript
 <Provider store={store}></Provider>
-// or
-<store.Provider></store.Provider>
 ```
 
 ##### Description
@@ -56,23 +57,27 @@ Creates React Components connected to the store.
 ##### Create a connected component
 
 ```JavaScript
+// ES6
+
 class MyComponent extends ConnectedComponent {
-    constructor (props) {
-        super(props, collectionNames);
+    //...
+}
+
+MyComponent.collections = collectionNames;
+
+// ES6 static getter
+
+class MyComponent extends ConnectedComponent {
+    static get collections () {
+        return collectionNames;
     }
     //...
 }
 
-// or
+// ESNext
 
 class MyComponent extends ConnectedComponent {
-    constructor (props) {
-        super(props, collectionNames);
-    }
-    //...
-    componentDidMount () {
-        this.connect();
-    }
+    static collections = collectionNames;
     //...
 }
 ```
@@ -92,10 +97,6 @@ The state of the component is unified with the state of the selected collections
 **dispatch()**
 
 Store#dispatch alias
-
-**connect()**
-
-If custom componentDidMount method provided connect() should be use as a super method for the component to connect it's state and methods.
 
 ### Testing
 
