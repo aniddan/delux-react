@@ -1,8 +1,8 @@
 {
     "name": "delux-react",
-    "version": "v1.3.1",
+    "version": "v1.4",
     "description": "React bindings for Delux",
-    "main": "index.js",
+    "main": "bin/index.js",
     "repository": {
         "type": "git",
         "url": "git@github.com:aniddan/delux-react.git"
@@ -17,7 +17,9 @@
         "flux"
     ],
     "scripts": {
-        "test": "webpack --watch test/test.js test/b_test.js"
+        "start": "npm run build -- --watch",
+        "build": "webpack --progress",
+        "test": "npm run start -- --config webpack.test-config.js"
     },
     "author": "Iddan Aharonson <mail@iddan.co> (http://iddan.co)",
     "license": "MIT",
@@ -25,46 +27,24 @@
         "url": "https://github.com/aniddan/delux-react/issues"
     },
     "homepage": "https://github.com/aniddan/delux-react",
-    "dependencies": {
-        "delux": "^1.1.0"
-    },
-    "eslintConfig": {
-        "extends": [
-            "eslint:recommended",
-            "plugin:react/recommended"
-        ],
-        "env": {
-            "es6": true,
-            "node": true,
-            "browser": true
-        },
-        "ecmaFeatures": {
-            "jsx": true,
-            "experimentalObjectRestSpread": true
-        },
-        "plugins": [
+    "babel": {
+        "presets": [
+            "es2015",
+            "stage-0",
             "react"
-        ],
-        "parserOptions": {
-            "sourceType": "module"
-        },
-        "rules": {
-            "indent": [
-                2,
-                4
-            ],
-            "quotes": [
-                2,
-                "single"
-            ],
-            "linebreak-style": [
-                2,
-                "unix"
-            ],
-            "semi": [
-                2,
-                "always"
-            ]
-        }
+        ]
+    },
+    "dependencies": {
+        "react": "^15.3.2"
+    },
+    "devDependencies": {
+        "babel-core": "",
+        "babel-loader": "",
+        "babel-preset-es2015": "",
+        "babel-preset-react": "^6.16.0",
+        "babel-preset-stage-0": "",
+        "eslint-config-infashion": "",
+        "webpack": "^2.1.0-beta.25",
+        "delux": "^1.3.0"
     }
 }

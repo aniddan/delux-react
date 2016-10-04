@@ -1,44 +1,34 @@
 const Store = require('delux');
 const React = require('react');
 const ReactDOM = require('react-dom');
-const {ConnectedComponent} = require('..');
+const {Provider, ConnectedComponent} = require('..');
 
-let store = new Store;
+const store = new Store;
 
-store.images = new Store.Collection({});
+store.images = new Store.Collection([]);
 
-store.images.on('addImage', (action, state) => {
-    state[action.payload.id] = action.payload;
-});
-
-let id = 0;
+store.images.on('addImage', (images, {payload}) => images.concat(payload));
 
 class App extends ConnectedComponent {
-    static get collections () {
-        return ['images'];
+    constructor () {
+        super(...arguments);
+        this.state.images = [];
+    }
+    static collections = ['images']
+    addImage () {
+        this.dispatch({
+            type: 'addImage',
+            payload: 'https://unsplash.it/200/?random'
+        });
     }
     render () {
-        return React.createElement('div', {
-            children: [
-                JSON.stringify(this.state.images),
-                React.createElement('button', {
-                    children: 'add',
-                    onClick: () => this.dispatch({
-                        type: 'addImage',
-                        payload: {
-                            id: id++,
-                            url: 'https://media.giphy.com/media/q5WCmw3RqDmxy/giphy.gif'
-                        }
-                    })
-                })
-            ]
-        });
+        const {state: {images}} = this;
+        const imageNodes = images.map((image, i) => <img width={200} height={200} key={i} src={image} />);
+        return <div>
+            <div><button onClick={::this.addImage}>add</button></div>
+            {imageNodes}
+        </div>
     }
 }
 
-ReactDOM.render(
-    React.createElement(store.Provider, {
-        children: React.createElement(App)
-    }),
-    document.querySelector('div')
-);
+ReactDOM.render(<Provider {...{store}}><App /></Provider>, document.querySelector('div'));

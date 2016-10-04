@@ -1,8 +1,14 @@
-const Store = require('delux');
-const React = require('react');
-const {PropTypes, Component} = React;
+const {PropTypes, Component} = require('react');
+const storeShape = require('./store-shape');
 
 class Provider extends Component {
+    static propTypes = {
+        store: storeShape,
+        children: PropTypes.element.isRequired
+    }
+    static childContextTypes = {
+        store: storeShape
+    }
     getChildContext () {
         return {store: this.props.store};
     }
@@ -11,19 +17,4 @@ class Provider extends Component {
     }
 }
 
-Provider.propTypes = {
-    store: PropTypes.instanceOf(Store).isRequired,
-    children: PropTypes.element.isRequired
-};
-
-Provider.childContextTypes = {
-    store: PropTypes.instanceOf(Store).isRequired
-};
-
 module.exports = Provider;
-
-module.exports.StoreConstructor = function StoreConstructor (store) {
-    return function Store (props) {
-        return React.createElement(Provider, Object.assign({}, props, {store}));
-    };
-};
