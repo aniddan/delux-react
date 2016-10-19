@@ -1,7 +1,7 @@
 const {Component} = require('react');
 const storeShape = require('./store-shape');
 
-module.exports = class ConnectedComponent extends Component {
+export default class ConnectedComponent extends Component {
     constructor () {
         super(...arguments);
         if (!this.state) {

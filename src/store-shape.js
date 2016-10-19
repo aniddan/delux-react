@@ -1,6 +1,6 @@
 const {PropTypes: {shape, object, func}} = require('react');
 
-module.exports = shape({
+export default shape({
     state: object.isRequired,
     queued: object.isRequired,
     dispatch: func.isRequired,

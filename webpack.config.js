@@ -1,19 +1,16 @@
 module.exports = {
-    entry: './index.js',
+    entry: './test/test.js',
     module: {
         loaders: [
             {
                 test: /.js$/,
-                include: /src/,
+                include: /test/,
                 loader: 'babel'
             }
         ]
     },
     output: {
-        library: 'delux-react',
-        libraryTarget: 'umd',
-        umdNamedDefine: true,
-        filename: 'index.js',
-        path: 'bin'
+        filename: 'b_test.js',
+        path: 'test'
     }
 };

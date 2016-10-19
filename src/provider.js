@@ -1,7 +1,7 @@
 const {PropTypes, Component} = require('react');
 const storeShape = require('./store-shape');
 
-class Provider extends Component {
+export default class Provider extends Component {
     static propTypes = {
         store: storeShape,
         children: PropTypes.element.isRequired
@@ -16,5 +16,3 @@ class Provider extends Component {
         return this.props.children;
     }
 }
-
-module.exports = Provider;
